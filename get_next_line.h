@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 18:40:50 by nperez-d          #+#    #+#             */
-/*   Updated: 2023/11/16 11:15:02 by nperez-d         ###   ########.fr       */
+/*   Updated: 2023/12/28 09:35:26 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@
 #  define BUFFER_SIZE 5
 # endif
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}		t_list;
-
 char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlen(const char *s);
 
 #endif
