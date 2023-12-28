@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:02:19 by nperez-d          #+#    #+#             */
-/*   Updated: 2023/12/28 09:33:59 by nperez-d         ###   ########.fr       */
+/*   Updated: 2023/12/28 10:31:46 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*next_line(char *saved_lines)
 		return (NULL);
 	while (saved_lines[i] != '\0' && saved_lines[i] != '\n')
 		i++;
-	str = (char *)malloc((i = 2) * sizeof(char));
+	str = (char *)malloc((i + 2) * sizeof(char));
 	if (!str)
 		return (NULL);
 	ft_strlcpy(str, saved_lines, i + 1);
