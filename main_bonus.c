@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 16:01:29 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/01/02 13:50:55 by nperez-d         ###   ########.fr       */
+/*   Created: 2024/01/02 13:39:59 by nperez-d          #+#    #+#             */
+/*   Updated: 2024/01/02 13:47:12 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <fcntl.h>
 #include <stdio.h>
 
 int	main(void)
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
 	char	*line;
 
-	fd = open("test2.txt", O_RDONLY);
-	while ((line = get_next_line(fd)))
+	fd1 = open("test.txt", O_RDONLY);
+	fd2 = open("test2.txt", O_RDONLY);
+	while ((line = get_next_line(fd1)) || (line = get_next_line(fd2)))
 	{
 		printf("%s", line);
 		free(line);
 	}
-	close(fd);
+	close(fd1);
+	close(fd2);
 	return (0);
 }
 

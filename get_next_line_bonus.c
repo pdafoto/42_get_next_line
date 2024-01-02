@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:02:19 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/01/02 12:39:11 by nperez-d         ###   ########.fr       */
+/*   Created: 2024/01/02 12:13:56 by nperez-d          #+#    #+#             */
+/*   Updated: 2024/01/02 12:38:44 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 // Function to keep everything after newline in a string:
 // 1. Initialize iterator to 0.
@@ -105,26 +105,29 @@ static char	*read_file(int fd, char *saved_lines)
 }
 
 // Main function:
-// 1. Error control (fd negative, buffer size not specified, nothing read).
-// 2. Calls read_file and saves its result into saved_lines (temporray line).
-// 3. Calls next_line and saves its result into line.
-// 4. Call keep_remain and saves result into new saved_lines (temporray line).
-// 5. Return line pointer to the start of next line.
+// 1. Check if fd is valid (fd not negative and lower than 256).
+// 2. Error control (buffer size not specified, nothing read).
+// 3. Calls read_file and saves result into saved_lines[given fd] (temp array).
+// 4. Calls next_line and saves its result into array.
+// 5. Calls keep_remain and saves result into new saved_lines (temporray array).
+// 6. Return extracxted line.
 char	*get_next_line(int fd)
 {
-	static char	*saved_lines;
+	static char	*saved_lines[256];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd > 255)
+		return (NULL);
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		free (saved_lines);
-		saved_lines = NULL;
+		free (saved_lines[fd]);
+		saved_lines[fd] = NULL;
 		return (NULL);
 	}
-	saved_lines = read_file(fd, saved_lines);
-	if (!saved_lines)
+	saved_lines[fd] = read_file(fd, saved_lines[fd]);
+	if (!saved_lines[fd])
 		return (NULL);
-	line = next_line(saved_lines);
-	saved_lines = keep_remain(saved_lines);
+	line = next_line(saved_lines[fd]);
+	saved_lines[fd] = keep_remain(saved_lines[fd]);
 	return (line);
 }
