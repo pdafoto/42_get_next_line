@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:01:29 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/01/02 13:50:55 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/01/02 20:26:00 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(void)
 	char	*line;
 
 	fd = open("test2.txt", O_RDONLY);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		printf("%s", line);
 		free(line);
@@ -37,8 +38,9 @@ int	main(void)
 // 	char	*line;
 // 	int		fd;
 
-// 	fd = fileno(stdin);
-// 	while ((line = get_next_line(fd)) != NULL)
+// fd = fileno(stdin);
+// line = get_next_line(fd);
+// 	while (line != NULL)
 // 	{
 // 		printf("%s\n", line);
 // 		free(line);
