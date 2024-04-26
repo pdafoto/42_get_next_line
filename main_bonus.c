@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:39:59 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/01/02 13:47:12 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:17:10 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,54 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int	main(void)
-{
-	int		fd1;
-	int		fd2;
-	char	*line;
-
-	fd1 = open("test.txt", O_RDONLY);
-	fd2 = open("test2.txt", O_RDONLY);
-	while ((line = get_next_line(fd1)) || (line = get_next_line(fd2)))
-	{
-		printf("%s", line);
-		free(line);
-	}
-	close(fd1);
-	close(fd2);
-	return (0);
-}
-
-// #include <stdio.h>
-// #include "get_next_line.h"
-
 // int	main(void)
 // {
+// 	int		fd1;
+// 	int		fd2;
 // 	char	*line;
-// 	int		fd;
 
-// 	fd = fileno(stdin);
-// 	while ((line = get_next_line(fd)) != NULL)
+// 	fd1 = open("test.txt", O_RDONLY);
+// 	fd2 = open("test2.txt", O_RDONLY);
+// 	while ((line = get_next_line(fd1)) || (line = get_next_line(fd2)))
 // 	{
-// 		printf("%s\n", line);
+// 		printf("%s", line);
 // 		free(line);
 // 	}
-
+// 	close(fd1);
+// 	close(fd2);
 // 	return (0);
 // }
+
+int	main(void)
+{
+	int		fd_1;
+	int		fd_2;
+	int		fd_3;
+	char	*line;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 1;
+	fd_1 = open("test.txt", O_RDONLY);
+	fd_2 = open("test2.txt", O_RDONLY);
+	fd_3 = open("test3.txt", O_RDONLY);
+	while (i < 20)
+	{
+		line = get_next_line(fd_1);
+		printf("fd_1 - Linea [%d]:\n%s\n", j, line);
+		free(line);
+		line = get_next_line(fd_2);
+		printf("fd_2 - Linea [%d]:\n%s\n", j, line);
+		free(line);
+		line = get_next_line(fd_3);
+		printf("fd_3 - Linea [%d]:\n%s\n", j, line);
+		free(line);
+		i++;
+		j++;
+	}
+	close(fd_1);
+	close(fd_2);
+	close(fd_3);
+	return (0);
+}

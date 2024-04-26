@@ -1,0 +1,15 @@
+This is a text file that can be used to test the Get_Next_Line function.
+
+The function should be able to read each line of the file, even if the lines are longer than the buffer size.
+
+The function should also be able to handle empty lines and lines that only contain whitespace characters.
+
+This is the first line of the file.
+This is the second line of the file. It is a longer line than the first line.
+
+This is the third line of the file. It is an empty line.
+
+This is the fourth line of the file. It only contains whitespace characters.
+
+
+This is the last line of the file.
